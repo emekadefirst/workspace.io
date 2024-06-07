@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.842) !important;
+    padding: 0.5em;
+}
+
+.head-banner {
+    background-color: rgba(0, 0, 0, 0.712);
+    padding: 0.5em;
+}
+
+form {
+    margin-left: 35%;
+    margin-top: 50px;
+    color: rgba(0, 110, 255, 0.842) !important;
+}
+input {
+    width: 25vw !important;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px light !important;
+}
+
+button {
+    width: 5vw !important;
+    height: 40px;
+    border-radius: 5px;
+    background-color: rgba(0, 110, 255, 0.842) !important;
+    color: rgba(255, 255, 255, 0.842) !important;
+    border: none;
+    cursor: pointer;
+}
+
+li {
+    max-width: 20vw !important;
+    max-height: 30px !important;
+    border-radius: 5px;
+    background-color: rgba(0, 110, 255, 0.842) !important;
+    color: #ffff !important;
+    border: none;
+    margin-left: 35%;
+    margin-top: 10px;
+    padding: 10px 20px;
+}
