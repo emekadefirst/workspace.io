@@ -33,7 +33,9 @@ async def websocket_endpoint(websocket: WebSocket):
     try:
         while True:
             data_in = await websocket.receive_text()
+            # Add message to database or storage
             add_message(data_in)
+            # Send back the received message
             await websocket.send_text(f"Message text was: {data_in}")
     except WebSocketDisconnect:
         return "WebSocket disconnected"
