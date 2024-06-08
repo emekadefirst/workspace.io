@@ -10,12 +10,11 @@ def add_message(message):
         return "Message added Successfully"
     
 
-def get_messages():
+def fetch_messages_from_db():
     with Session(engine) as session:
         statement = select(Message)
         results = session.exec(statement).all()
         return results
-    
     
 def get_by_id():
     with Session(engine) as session:

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Message</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <ul id="message-list"></ul>
+
+    <script>
+        const apiUrl = 'http://localhost:8000/message';
+
+        axios.get(apiUrl)
+            .then(response => {
+                const messages = response.data; // Array of message objects
+                const messageList = document.getElementById('message-list');
+
+                messages.forEach(messageObj => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = messageObj.message;
+                    messageList.appendChild(listItem);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching the messages:', error);
+            });
+    </script>
+</body>
+
+</html>
