@@ -1,8 +1,15 @@
 from fastapi import FastAPI, WebSocket, HTTPException, WebSocketDisconnect
 from sessions import add_message, create_user, fetch_messages_from_db
-
+from models import Message, User
+from database import create_db_and_table
 from fastapi.middleware.cors import CORSMiddleware
 from serializiers import UserSerializer
+
+def rundb():
+    Message, User
+    create_db_and_table()
+    
+rundb()
 
 app = FastAPI()
 

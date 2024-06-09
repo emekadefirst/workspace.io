@@ -4,26 +4,29 @@ function scrollToBottom() {
   chatMessagesElement.scrollTop = chatMessagesElement.scrollHeight;
 }
 
-// Fetch data from the endpoint
-fetch("http://localhost:8000/message")
-  .then((response) => response.json())
-  .then((data) => {
-    const messagesElement = document.getElementById("messages");
-    // Clear existing content
-    messagesElement.innerHTML = "";
-    // Append each message to the list
-    data.forEach((messageObj) => {
-      const li = document.createElement("li");
-      li.textContent = messageObj.message; // Use the 'message' property
-      messagesElement.appendChild(li);
+// Function to load messages from the server
+function loadMessages() {
+  fetch("http://localhost:8000/message")
+    .then((response) => response.json())
+    .then((data) => {
+      const messagesElement = document.getElementById("messages");
+      // Clear existing content
+      messagesElement.innerHTML = "";
+      // Append each message to the list
+      data.forEach((messageObj) => {
+        const li = document.createElement("li");
+        li.textContent = messageObj.message; // Use the 'message' property
+        messagesElement.appendChild(li);
+      });
+      // Scroll to the bottom after loading messages
+      scrollToBottom();
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
     });
-    // Scroll to the bottom after loading messages
-    scrollToBottom();
-  })
-  .catch((error) => {
-    console.error("Error fetching data:", error);
-  });
+}
 
+// WebSocket setup
 var ws = new WebSocket("ws://localhost:8000/ws");
 ws.onmessage = function (event) {
   const messagesElement = document.getElementById("messages");
@@ -35,9 +38,13 @@ ws.onmessage = function (event) {
   scrollToBottom();
 };
 
+// Function to send a message via WebSocket
 function sendMessage(event) {
   const input = document.getElementById("messageText");
   ws.send(input.value);
   input.value = "";
   event.preventDefault();
 }
+
+// Load messages initially
+loadMessages();
