@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <link rel="stylesheet" href="assets/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-0l7WNFqZqvFgSOmEhR9JqMgtdPZ9fE1/qhT1CkvP5Vu0kUZ7Cd9xHT/ft8tuB2A5HbEz6rKZT/nnnUK5zSTlAA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1>Contacts</h1>
+            <ul id="contacts"></ul>
+        </div>
+        <div class="chat-area">
+            <div class="chat-header">
+                <h1>Advanced Python ChatRoom</h1>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <ul id="messages"></ul>
+            </div>
+            <div class="chat-input">
+                <form action="" onsubmit="sendMessage(event)">
+                    <input type="text" id="messageText" autocomplete="off" placeholder="Type a message" />
+                    <button type="submit"><i class="fa fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/6c4797cdd6.js" crossorigin="anonymous"></script>
+    <script src="assets/socket.js"></script>
+</body>
+
+</html>
