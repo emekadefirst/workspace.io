@@ -10,6 +10,11 @@ class User(SQLModel, table=True):
 class Message(SQLModel, table=True):
     id : int | None = Field(default=None, primary_key=True)
     message: str 
-    # user: str = Field(default=None, foreign_key="user.username")
+#     user: str = Field(default=None, foreign_key="user.username")
+
+# class Room(SQLModel, table=True):
+#     id: int | None = Field(default=None, primary_key=True)
+#     user_message: str = Field(default=None, foreign_key="user.message")
+#     user: str = Field(default=None, foreign_key="user.username")
 
 create_db_and_table()
