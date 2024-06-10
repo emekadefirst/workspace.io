@@ -3,40 +3,40 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .navbar {
-    background-size: cover;
-    background-position: center;
     padding: 1rem;
     position: sticky;
     top: 0;
     z-index: 1000;
-    color: #fff;
 }
 
-        .newsletter-input {
-            background-color: white !important; 
-            border: 1px solid #fff; 
-            border-radius: 0.25rem; /* Border radius */
-            padding: 0.75rem; /* Padding inside the input */
-        }
+.newsletter-input {
+    width: 100%;
+    background-color: white !important;
+    border: 1px solid #fff;
+    border-radius: 0.25rem;
+    padding: 0.75rem;
+}
 
-        .centered-input-group {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.centered-input-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allow items to wrap */
+}
 
-        .input-group {
-            max-width: 500px; /* Adjust this width as needed */
-            width: 100%;
-        }
+.input-group {
+    max-width: 500px; /* Adjust this width as needed */
+    width: 100%;
+}
 
 .navbar .navbar-brand,
 .navbar .nav-link,
 .navbar .btn-outline-success {
-    color: #fff !important;
+    color: #ffff !important;
 }
 
 section .demo-img {
@@ -105,17 +105,6 @@ section .demo-img::before {
     margin-bottom: 0;
 }
 
-.footer {
-    background-color: #343a40;
-    color: white;
-    padding: 1rem 0;
-    text-align: center;
-}
-
-.footer p {
-    margin: 0;
-}
-
 .form-container {
     position: relative;
     display: flex;
@@ -152,6 +141,7 @@ section .demo-img::before {
 .form-box h2 {
     margin-bottom: 1rem;
     text-align: center;
+    color: #fff;
 }
 
 .form-box input {
@@ -187,4 +177,15 @@ section .demo-img::before {
 
 .form-box .link:hover {
     text-decoration: underline;
+}
+
+.footer {
+    background-color: #343a40;
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+.footer p {
+    margin: 0;
 }
