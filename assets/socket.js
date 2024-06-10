@@ -1,3 +1,4 @@
+
 // Function to scroll to the bottom of the messages
 function scrollToBottom() {
   const chatMessagesElement = document.getElementById("chat-messages");
