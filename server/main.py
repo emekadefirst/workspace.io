@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from message.route import message
 from user.route import auth
+from room.route import room
 from newsletter.route import nwl
 from sqlmodel import SQLModel, create_engine
 from models import *
@@ -31,6 +32,7 @@ def main():
     app.include_router(message)
     app.include_router(auth)
     app.include_router(nwl)
+    app.include_router(room)
 
 
 

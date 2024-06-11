@@ -7,5 +7,5 @@ auth = APIRouter()
 
 @auth.post("/new-user")
 async def user(serializer: UserSerializer):
-    create_user(serializer.username, serializer.email, serializer.password)
+    await create_user(serializer.username, serializer.email, serializer.password)
     return  HTTPException(status_code=201, detail="User created")
