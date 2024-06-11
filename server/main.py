@@ -1,51 +1,44 @@
-from fastapi import FastAPI, WebSocket, HTTPException, WebSocketDisconnect
-from sessions import add_message, create_user, fetch_messages_from_db
-from models import Message, User
-from database import create_db_and_table
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from serializiers import UserSerializer
+from message.route import message
+from user.route import auth
+from newsletter.route import nwl
+from sqlmodel import SQLModel, create_engine
+from models import *
 
-def rundb():
-    Message, User
+db_name = "message.db"
+db_url = f"sqlite:///{db_name}"
+engine = create_engine(db_url, echo=True)
+
+def create_db_and_table():
+    SQLModel.metadata.create_all(engine)
+
+def run_db():
+    Message, User, NewsLetter, Room
     create_db_and_table()
-    
-rundb()
 
 app = FastAPI()
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+def main():
+    run_db()
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+    app.include_router(message)
+    app.include_router(auth)
+    app.include_router(nwl)
 
 
-@app.get("/message")
-def get_messages():
-    messages = fetch_messages_from_db()
-    if not messages:
-        return {"message": "No results"}
-    return messages
 
-@app.post("/new-user")
-async def user(serializer: UserSerializer):
-    create_user(serializer.username, serializer.email, serializer.password)
-    return  HTTPException(status_code=201, detail="User created")
+main()
 
-@app.websocket("/ws")
-async def websocket_endpoint(websocket: WebSocket):
-    await websocket.accept()
-    try:
-        while True:
-            data_in = await websocket.receive_text()
-            # Add message to database or storage
-            add_message(data_in)
-            # Send back the received message
-            await websocket.send_text(f"Message text was: {data_in}")
-    except WebSocketDisconnect:
-        return "WebSocket disconnected"
+
+
+
         
         
     

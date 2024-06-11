@@ -1,6 +1,5 @@
 from sqlmodel import SQLModel, Field, Relationship
 from typing import Optional, List
-from database import create_db_and_table
  
 class User(SQLModel, table=True):
     id : int | None = Field(default=None, primary_key=True)
@@ -24,5 +23,3 @@ class Room(SQLModel, table=True):
 class NewsLetter(SQLModel, table=True):
     id : int | None = Field(default=None, primary_key=True)
     email: str = Field(default=None, unique=True)
-
-create_db_and_table()
