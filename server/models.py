@@ -1,4 +1,5 @@
-from sqlmodel import SQLModel, Field
+from sqlmodel import SQLModel, Field, Relationship
+from typing import Optional, List
 from database import create_db_and_table
  
 class User(SQLModel, table=True):
@@ -6,15 +7,22 @@ class User(SQLModel, table=True):
     username: str = Field(unique=True)
     email: str = Field(unique=True)
     password: str    
+    messages: List["Message"] = Relationship(back_populates="user")
+    rooms: List["Room"] = Relationship(back_populates="user")
     
 class Message(SQLModel, table=True):
-    id : int | None = Field(default=None, primary_key=True)
+    id: Optional[int] = Field(default=None, primary_key=True)
     message: str 
-#     user: str = Field(default=None, foreign_key="user.username")
+    user_id: Optional[int] = Field(default=None, foreign_key="user.id")
+    user: Optional[User] = Relationship(back_populates="messages")
 
-# class Room(SQLModel, table=True):
-#     id: int | None = Field(default=None, primary_key=True)
-#     user_message: str = Field(default=None, foreign_key="user.message")
-#     user: str = Field(default=None, foreign_key="user.username")
+class Room(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    user_id: Optional[int] = Field(default=None, foreign_key="user.id")
+    user: Optional[User] = Relationship(back_populates="rooms")
+
+class NewsLetter(SQLModel, table=True):
+    id : int | None = Field(default=None, primary_key=True)
+    email: str = Field(default=None, unique=True)
 
 create_db_and_table()

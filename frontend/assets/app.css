@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -13,7 +14,7 @@ body {
     display: flex;
     height: 100vh;
     width: 100%;
-    overflow-x: hidden; 
+    overflow-x: hidden;
 }
 
 #toggleSidebar {
@@ -28,29 +29,27 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    z-index: 1000; 
 }
 
 .sidebar {
-    width: 250px;  /* Adjusted from 25% */
+    width: 250px;
     background-color: #2c2c2c;
     color: #e0e0e0;
-    overflow: hidden; 
-    transition: transform 0.3s ease;
+    overflow: hidden;
+    transition: transform 0.3s ease, left 0.3s ease;
     height: 100vh;
     position: fixed;
-    /* z-index: 1; */
-    left: 0;
-}
-
-.sidebar.active {
-    transform: translateX(250px);
+    left: 0; 
+    z-index: 1;
 }
 
 .sidebar h1 {
+    background-color: #33333311;
     padding: 20px;
-    font-size: 24px;
-    background-color: #333333;
     text-align: center;
+    color: #e0e0e0;
+    font-size: 20px;
 }
 
 #contacts {
@@ -71,16 +70,12 @@ body {
 }
 
 .chat-area {
-    flex: 1;  /* Expand to fill remaining space */
+    flex: 1;
     display: flex;
     flex-direction: column;
     background-color: #1e1e1e;
     transition: margin-left 0.3s ease;
-    margin-left: 250px; /* Adjusted from 0 */
-}
-
-.chat-area.active {
-    margin-left: 500px; /* Adjust as needed */
+    margin-left: 250px; 
 }
 
 .chat-header {
@@ -160,21 +155,14 @@ form button i {
     background-color: transparent;
 }
 
-/* Media Queries for Mobile */
+
 @media (max-width: 768px) {
     #toggleSidebar {
         display: block;
     }
 
     .sidebar {
-        width: 250px;
-        position: absolute;
-        top: 0;
-        left: -250px;
-        height: 100%;
-        z-index: 1;
-        transition: left 0.3s ease;
-        padding-left: 0;
+        left: -250px; 
     }
 
     .sidebar.active {
@@ -182,12 +170,10 @@ form button i {
     }
 
     .chat-area {
-        width: 100%;
-        transition: margin-left 0.3s ease;
-        margin-left: 0;
+        margin-left: 0; 
     }
 
     .chat-area.active {
-        margin-left: 250px;
+        margin-left: 250px; 
     }
 }

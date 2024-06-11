@@ -1,6 +1,20 @@
 from database import engine
 from sqlmodel import Session, select
-from models import User, Message
+from models import User, Message, NewsLetter, Room
+
+"""Newsletters session Manager"""
+def add_email(email):
+    with Session(engine) as session:
+        session.add(NewsLetter(email=email))
+        session.commit()
+        return "email submited Successfully"
+    
+def remove_email():
+    with Session(engine) as session:
+        email = session.exec(NewsLetter).filter(NewsLetter, id).all()
+        session.delete(email)
+        session.commit()
+        return f"{email} deleted successfully"
 
 """Message session manager"""
 def add_message(message):
