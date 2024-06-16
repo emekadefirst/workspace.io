@@ -3,12 +3,10 @@ from sqlmodel import SQLModel, Field, Relationship
 from typing import Optional, List
  
 class User(SQLModel, table=True):
-    id : int | None = Field(default=None, primary_key=True)
-    username: str = Field(unique=True)
-    email: str = Field(unique=True)
-    password: str    
-    messages: List["Message"] = Relationship(back_populates="user")
-    rooms: List["Room"] = Relationship(back_populates="user")
+    id: int = Field(default=None, primary_key=True)
+    username: str = Field(unique=True, index=True)
+    email: str = Field(unique=True, index=True)
+    hashed_password: str = Field()
     
 class Message(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
