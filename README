@@ -2,3 +2,7 @@
 <div id="header" align="center">
   <img src="gitread/api-doc.png" width="100"/>
 </div>
+
+To change user author name and email in git.
+git config --global user.name "Author name"
+git config --global user.email "Author email"
